@@ -1,0 +1,11 @@
+@import "./variables.scss";
+
+%inpAndBtnBorder {
+    border: 1px solid $colorMainPurple;
+    border-radius: 5px;
+}
+
+%placeHolderFont {
+    font-size: $fsPlaceHolder;
+    color: #C3C1E5;
+}

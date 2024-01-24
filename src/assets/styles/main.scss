@@ -1,0 +1,32 @@
+@import "./normalize.css";
+@import "./variables.scss";
+@import "./style_fragment.scss";
+
+// center
+.center {
+  padding-left: calc(50% - #{$widthSuite} / 2);
+  padding-right: calc(50% - #{$widthSuite} / 2);
+}
+
+.button-focus {
+    color: $colorWhite;
+    background-color: $colorMainPurple;
+    @include animation(backround-color);
+    &:hover {
+        background-color: $colorPurpleDark;
+    }
+}
+
+
+.btn {
+    padding: 10px;
+    font-size: $fsBtn;
+    @extend %inpAndBtnBorder;
+}
+
+.input {
+    padding: 8px 16px;
+    &::placeholder {
+        @extend %placeHolderFont;
+    }
+}

@@ -1,0 +1,20 @@
+// color
+$colorMainPurple: #6C63FF;
+$colorPurpleDark: #534CC2;
+$colorPurpleLight: rgba(108, 99, 255, 0.20);
+$colorWhite: #F7F7F7;
+$colorBlack: #252525;
+
+// font size
+$fsTitle: calc(18px + 8 * (100vw - 320px) / 880);
+$fsTodoText: calc(12px + 8 * (100vw - 320px) / 880);
+$fsBtn: calc(10px + 8 * (100vw - 320px) / 880);
+$fsPlaceHolder: calc(8px + 8 * (100vw - 320px) / 880);
+
+// width
+$widthSuite: 1200px;
+
+//mixin
+@mixin animation($animElem) {
+    transition: $animElem 0.3s ease;
+  }
