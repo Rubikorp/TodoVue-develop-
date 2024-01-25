@@ -12,10 +12,6 @@ export default createStore({
     ],
   },
   getters: {
-    get_state(state) {
-      return state.todos;
-    },
-
     get_state_find_words(todos = state.todos, input) {
       const matches = [];
       todos.forEach((todo) => {
@@ -23,8 +19,12 @@ export default createStore({
           matches.push(todo);
         }
       });
-      return matches;
+      state.view_todos = matches;
     },
+
+    get_compl_uncompl_all_state(state, view) {
+      
+    }
   },
   mutations: {
     add_todo(state, todo) {

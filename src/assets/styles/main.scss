@@ -1,11 +1,28 @@
 @import "./normalize.css";
-@import "./variables.scss";
-@import "./style_fragment.scss";
+@import "variables.scss";
+@import "style-fragment.scss";
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    /* отображаем курсор в виде руки при наведении; некоторые
+    считают, что необходимо оставлять стрелочный вид для кнопок */
+    cursor: pointer;
+  }
 
 // center
 .center {
-  padding-left: calc(50% - #{$widthSuite} / 2);
-  padding-right: calc(50% - #{$widthSuite} / 2);
+    padding-left: calc(50% - #{$widthSuite} / 2);
+    padding-right: calc(50% - #{$widthSuite} / 2);
 }
 
 .button-focus {
@@ -17,7 +34,6 @@
     }
 }
 
-
 .btn {
     padding: 10px;
     font-size: $fsBtn;
@@ -26,7 +42,100 @@
 
 .input {
     padding: 8px 16px;
+    font-size: $fsBtn;
+    @extend %inpAndBtnBorder;
     &::placeholder {
         @extend %placeHolderFont;
     }
+    &:focus {
+        outline-color: $colorMainPurple;
+    }
+}
+
+.ttl {
+    margin-top: 40px;
+    margin-bottom: 18px;
+    text-align: center;
+    color: $colorBlack;
+    font-family: Kanit;
+    font-size: $fsTitle;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 20px */
+}
+
+//find component
+.find {
+    position: relative;
+    &__svg {
+        position: absolute;
+        width: $fsBtn;
+        right: 16px;
+        top: 8px;
+    }
+}
+
+.box-find {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+}
+
+.box-select-div {
+    position: relative;
+    &__select {
+        width: 100%;
+        text-align: start;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: $colorMainPurple;
+        text-transform: uppercase;
+        font-size: $fsBtn;
+        color: $colorWhite;
+        font-style: normal;
+        font-weight: 500;
+    }
+    &__btn {
+        position: relative;
+    }
+    &__svg {
+        position: absolute;
+        right: 10px;
+        top: 35%;
+        height: calc(5px + 4 * (100vw - 320px) / 430);
+        @include animation(transform);
+    }
+}
+
+.box-select-options-div {
+    display: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleY(0) translate(0, -100%);
+    @include animation(transform);
+}
+
+.box-select-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 0;
+    border: 1px solid $colorMainPurple;
+    border-radius: 5px;
+    font-size: $fsBtn;
+    &__item {
+        padding: 0 6px;
+        cursor: pointer;
+    }
+    &__item:hover {
+        background-color: $colorPurpleLight;
+    }
+}
+
+.active-option {
+    transform:scaleY(1) translate(0);
+}
+
+.active-option-svg {
+    transform: rotate(180deg);
 }

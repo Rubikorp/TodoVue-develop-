@@ -6,13 +6,13 @@ $colorWhite: #F7F7F7;
 $colorBlack: #252525;
 
 // font size
-$fsTitle: calc(18px + 8 * (100vw - 320px) / 880);
-$fsTodoText: calc(12px + 8 * (100vw - 320px) / 880);
-$fsBtn: calc(10px + 8 * (100vw - 320px) / 880);
-$fsPlaceHolder: calc(8px + 8 * (100vw - 320px) / 880);
+$fsTitle: calc(18px + 8 * (100vw - 320px) / 430);
+$fsTodoText: calc(12px + 8 * (100vw - 320px) / 430);
+$fsBtn: calc(10px + 8 * (100vw - 320px) / 430);
+$fsPlaceHolder: calc(8px + 8 * (100vw - 320px) / 430);
 
 // width
-$widthSuite: 1200px;
+$widthSuite: 750px;
 
 //mixin
 @mixin animation($animElem) {
