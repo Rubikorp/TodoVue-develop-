@@ -1,23 +1,35 @@
 <template>
   <div class="main center">
-    <header>
+    <div :class="show_modal ? 'modal-mask' : ''"></div>
+    <section 
+        class="section">
+        <div class="ankhor">
+            <create-note-icon class="create-note-icon"></create-note-icon>
+        </div>
         <h1 class="ttl">
-            СПИСОК ЗАДАЧЬ
+            СПИСОК ЗАДАЧ
         </h1>
-    </header>
-    <div class="find-note">
         <find-note-component></find-note-component>
-    </div>
+        
+    </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import FindNoteComponent from './components/FindNoteComponent.vue'
+import CreateNoteIcon from './components/CreateNoteIcon.vue';
+
 
 export default {
     components: {
         FindNoteComponent,
+        CreateNoteIcon,
+    },
+    data() {
+        return {
+            show_modal:false
+        }
     },
     computed: {
         ...mapGetters([
@@ -31,5 +43,18 @@ export default {
 </script>
 
 <style lang="scss">
-
+    @media (max-width: 720px) {
+        .section {
+            padding: 8px;
+        }
+    }
+    .ankhor{
+        position: relative;
+        width: 100%;
+    }
+    .create-note-icon {
+        position: absolute;
+        right: 8px;
+        top: 80vh;
+    }
 </style>

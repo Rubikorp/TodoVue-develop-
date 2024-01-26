@@ -1,6 +1,12 @@
 @import "./normalize.css";
 @import "variables.scss";
 @import "style-fragment.scss";
+@import "animation.scss";
+@import "modal-style.scss";
+
+* {
+    box-sizing: border-box;
+}
 
 ul {
     list-style: none;
@@ -13,11 +19,12 @@ button {
     border: none;
     font: inherit;
     color: inherit;
-    background-color: transparent;
-    /* отображаем курсор в виде руки при наведении; некоторые
-    считают, что необходимо оставлять стрелочный вид для кнопок */
+    background-color: $colorMainPurple;
     cursor: pointer;
-  }
+    &:hover {
+        background-color: $colorPurpleDark;
+    }
+}
 
 // center
 .center {
@@ -43,6 +50,7 @@ button {
 .input {
     padding: 8px 16px;
     font-size: $fsBtn;
+    color: $colorMainPurple;
     @extend %inpAndBtnBorder;
     &::placeholder {
         @extend %placeHolderFont;
@@ -65,30 +73,38 @@ button {
 }
 
 //find component
+.box-find {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
 .find {
     position: relative;
+    flex: 4;
     &__svg {
         position: absolute;
         width: $fsBtn;
         right: 16px;
         top: 8px;
     }
-}
-
-.box-find {
-    display: flex;
-    gap: 16px;
-    justify-content: space-between;
+    &__input {
+        padding-right: 36px;
+        width: 100%;
+    }
 }
 
 .box-select-div {
+    min-width: 26%;
     position: relative;
+    flex: 2;
     &__select {
         width: 100%;
         text-align: start;
-        padding: 10px;
+        padding: 9px;
+        padding-right: 34px;
         border-radius: 5px;
-        background-color: $colorMainPurple;
         text-transform: uppercase;
         font-size: $fsBtn;
         color: $colorWhite;
@@ -98,33 +114,33 @@ button {
     &__btn {
         position: relative;
     }
+
     &__svg {
         position: absolute;
+        top: 50%;
         right: 10px;
-        top: 35%;
-        height: calc(5px + 4 * (100vw - 320px) / 430);
+        transform: translateY(-50%);
+        height: calc(5px + 4 * (100vw - 320px) / 880);
         @include animation(transform);
     }
 }
 
 .box-select-options-div {
-    display: absolute;
-    top: 0;
+    top: 100%;
     left: 0;
-    transform: scaleY(0) translate(0, -100%);
-    @include animation(transform);
+    width: 100%;
+    position: absolute;
+    display: none;
 }
 
 .box-select-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 8px 0;
     border: 1px solid $colorMainPurple;
     border-radius: 5px;
     font-size: $fsBtn;
     &__item {
-        padding: 0 6px;
+        padding: 8px 6px;
         cursor: pointer;
     }
     &__item:hover {
@@ -132,10 +148,34 @@ button {
     }
 }
 
+.btn-color {
+    border-radius: 5px;
+    width: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__img {
+       height: calc(25px + 8 * (100vw - 320px) / 880);
+    }
+}
+
 .active-option {
-    transform:scaleY(1) translate(0);
+    display: block;
+    animation: slideDown 0.5s;
 }
 
 .active-option-svg {
-    transform: rotate(180deg);
+    transform: rotate(180deg) translateY(50%);
+}
+
+//btn add
+.btn-create-note {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: calc(100% / 2);
+
+    &__img {
+        height: calc(40px + 8 * (100vw - 320px) / 530)
+    }
 }
