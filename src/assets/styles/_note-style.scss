@@ -1,0 +1,49 @@
+@import "variables.scss";
+
+
+.note-article {
+    padding: 17px 0 17px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-article:not(:last-child) {
+    border-bottom: 1px solid $colorMainPurple;
+}
+
+.checkbox-note {
+    width: 80%;
+}
+
+.edit-delete-note {
+    display: flex;
+    align-items: center;
+    &__btn {
+        display: flex;
+        justify-content: center;
+        background-color: transparent;
+        margin-left: 8px;
+    }
+    &__btn:hover {
+        background-color: transparent;
+    }
+}
+
+
+// animation
+.edit-note path {
+    @include animation(stroke);
+}
+
+.edit-note:hover path {
+    stroke: green;
+}
+
+.delete-note path {
+    @include animation(stroke);
+}
+
+.delete-note:hover path {
+    stroke: red;
+}

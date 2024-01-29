@@ -1,0 +1,96 @@
+@import "variables.scss";
+
+.box-find {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.find {
+    position: relative;
+    flex: 4;
+    &__svg {
+        position: absolute;
+        width: $fsBtn;
+        right: 16px;
+        top: 8px;
+    }
+    &__input {
+        padding-right: 36px;
+        width: 100%;
+    }
+}
+
+.box-select-div {
+    min-width: 26%;
+    position: relative;
+    flex: 2;
+    &__select {
+        width: 100%;
+        text-align: start;
+        padding: 9px;
+        padding-right: 34px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        font-size: $fsBtn;
+        color: $colorWhite;
+        font-style: normal;
+        font-weight: 500;
+    }
+    &__btn {
+        position: relative;
+    }
+
+    &__svg {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        height: calc(5px + 4 * (100vw - 320px) / 880);
+        @include animation(transform);
+    }
+}
+
+.box-select-options-div {
+    top: 100%;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    display: none;
+}
+
+.box-select-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $colorMainPurple;
+    border-radius: 5px;
+    font-size: $fsBtn;
+    &__item {
+        padding: 8px 6px;
+        cursor: pointer;
+    }
+    &__item:hover {
+        background-color: $colorPurpleLight;
+    }
+}
+
+.btn-color {
+    border-radius: 5px;
+    width: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__img {
+       height: calc(25px + 8 * (100vw - 320px) / 880);
+    }
+}
+
+.active-option {
+    display: block;
+    animation: slideDown 0.5s;
+}
+
+.active-option-svg {
+    transform: rotate(180deg) translateY(50%);
+}

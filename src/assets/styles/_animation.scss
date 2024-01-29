@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 // select btn
 @keyframes slideDown {
     from {
@@ -9,3 +11,38 @@
       transform: translateY(0);
     }
   }
+
+  @keyframes checked-check {
+    0% {
+        border-top: none;
+        border-left: none;
+    }
+
+    50% {
+        border-top: 2px solid $colorWhite;
+        border-left: none;
+    }
+    100% {
+        border-top: 2px solid $colorWhite;
+        border-left: 2px solid $colorWhite;
+    }
+}
+
+@keyframes box-checked {
+    0% {
+        -webkit-box-shadow: 0px 0px 0px 0px rgba(108, 99, 255, 0.24);
+        -moz-box-shadow: 0px 0px 0px 0px rgba(108, 99, 255, 0.24);
+        box-shadow: 0px 0px 0px 0px rgba(108, 99, 255, 0.24);
+    }
+
+    50% {
+        -webkit-box-shadow: 0px 0px 0px 7px rgba(158, 152, 255, 0.55);
+        -moz-box-shadow: 0px 0px 0px 7px rgba(158, 152, 255, 0.55);
+        box-shadow: 0px 0px 0px 7px rgba(158, 152, 255, 0.55);
+    }
+    100% {
+        -webkit-box-shadow: 0px 0px 0px 0px rgba(108, 99, 255, 0.24);
+        -moz-box-shadow: 0px 0px 0px 0px rgba(108, 99, 255, 0.24);
+        box-shadow: 0px 0px 0px 0px rgba(108, 99, 255, 0.24);
+    }
+}

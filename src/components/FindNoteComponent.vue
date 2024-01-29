@@ -63,14 +63,15 @@
       </div>
     </div>
     <button class="btn-color">
-      <img src="../assets/img/color-sheme.svg" alt="" class="btn-color__img">
+      <img src="../assets/img/color-sheme.svg" alt="" class="btn-color__img" />
     </button>
   </div>
 </template>
 <script>
-import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "FindNoteComponent",
+  props: {
+  },
   data() {
     return {
       select_option: [
@@ -83,7 +84,6 @@ export default {
     };
   },
   methods: {
-    ...mapGetters(["get_compl_uncompl_all_state"]),
     clickOption(name) {
       this.select_option.forEach((element) => {
         if (element.name === name) {

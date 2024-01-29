@@ -1,13 +1,66 @@
 @import "variables.scss";
 
-.modal-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: table;
+.modal {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(37, 37, 37, 0.7);
+  display: table;
+  &__wrapper {
+    display: table-cell;
+    vertical-align: middle;
   }
-  
+}
+
+.modal-container {
+  max-width: 500px;
+  margin: 0px auto;
+  padding: 18px 30px;
+  background-color: $colorWhite;
+  border-radius: 16px;
+  &__head {
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: $fsTitle;
+    font-style: normal;
+    font-weight: 500;
+  }
+  &__input {
+    width: 100%;
+    margin-bottom: 128px;
+  }
+}
+
+%modal-btn {
+  padding: 10px 22px;
+  border-radius: 5px;
+  font-size: $fsBtn;
+  font-style: normal;
+  font-weight: 500;
+}
+.modal-btn {
+  display: flex;
+  justify-content: space-between;
+  &__close {
+    @extend %modal-btn;
+    color: $colorMainPurple;
+    background-color: $colorWhite;
+    border: 1px solid $colorMainPurple;
+    @include animation(color);
+    @include animation(border);
+    @include animation(background);
+  }
+  &__close:hover {
+    color: $colorWhite;
+    border-color: $colorMainPurple;
+    background-color: $colorMainPurple
+  }
+  &__apply {
+    @extend %modal-btn;
+    color: $colorWhite;
+  }
+}

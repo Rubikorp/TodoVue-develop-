@@ -1,0 +1,51 @@
+@import "variables.scss";
+
+.note-checkbox {
+    user-select: none;
+    &__label {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        font-size: $fsTodoText;
+        font-style: normal;
+        font-weight: 400;
+        color: $colorBlack;
+        cursor: pointer;
+    }
+    &__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-right: 17px;
+        height: calc(#{$fsTodoText} + 8px);
+        width: calc(#{$fsTodoText} + 8px);
+        border: 1px solid $colorMainPurple;
+        border-radius: 2px;
+    }
+    &__check {
+        display: inline-block;
+        border-top: 2px solid $colorWhite;
+        border-left: 2px solid $colorWhite;
+        width: 7px;
+        height: 13px;
+        transform: rotate(-135.559deg);
+        opacity: 0;
+    }
+}
+
+#note-checkbox-id:checked ~ .note-checkbox__label span {
+    background-color: $colorMainPurple;
+    animation: box-checked 0.3s ease-in-out;
+}
+
+#note-checkbox-id:checked ~ .note-checkbox__label {
+    color: rgba(37, 37, 37, 0.5);
+    text-decoration: line-through;
+}
+
+#note-checkbox-id:checked ~ .note-checkbox__label span span {
+    opacity: 1;
+    animation: checked-check 0.3s ease-in-out;
+}
+
