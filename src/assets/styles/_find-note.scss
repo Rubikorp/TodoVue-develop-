@@ -53,11 +53,14 @@
 }
 
 .box-select-options-div {
+    position: absolute;
+    display: none;
     top: 100%;
     left: 0;
     width: 100%;
-    position: absolute;
-    display: none;
+    background-color: white;
+    
+    
 }
 
 .box-select-list {

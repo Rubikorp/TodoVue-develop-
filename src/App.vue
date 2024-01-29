@@ -12,6 +12,8 @@
         <div class="note">
             <div class="note__container">
                 <note> NOTE #1</note>
+                <note> NOTE #1</note>
+                <note> NOTE #1</note>
             </div>
         </div>
     </section>
