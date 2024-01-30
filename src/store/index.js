@@ -1,9 +1,11 @@
 import { createStore } from "vuex";
 import { v4 as uuidv4 } from "uuid";
+import createNote from "@/assets/scripts/createNote";
 
 export default createStore({
   state: {
-    todos: [
+    filter: 'all',
+    notes: [
       {
         id: uuidv4(),
         text: "Планируй и создавай",
@@ -12,29 +14,35 @@ export default createStore({
     ],
   },
   getters: {
-    getClickAdd(state) {
-      return state.click_add;
+    getAllNotes(state) {
+      return state.notes;
     },
-
-    getStateFindWords(todos = state.todos, input) {
-      const matches = [];
-      todos.forEach((todo) => {
-        if (todo.text.indexOf(input) !== -1) {
-          matches.push(todo);
-        }
-      });
-      state.view_todos = matches;
+    getComplNote(state) {
+      return state.notes.filter(item => item.flag === true)
     },
-
-    getComplUncomplAllState(state, view) {},
+    getUnComplNote(state) {
+      return state.notes.filter(item => item.flag === false)
+    },
+    getLength(state) {
+      return state.notes.length
+    },
+    getFilterValue(state) {
+      return state.filter
+    }
   },
   mutations: {
-    addTodo(state, todo) {
-      state.todos.push(todo);
+    addNote(state, text) {
+      state.notes.push(createNote(uuidv4(), text, false))
     },
-    deleteTodo(state, id) {
-      state.todos.filter((todo) => todo.id !== id);
+    deleteNote(state, id) {
+      state.notes = state.notes.filter(item => item.id !== id)
     },
+    editFilter(state, filter) {
+      state.filter = filter
+    },
+    editFlag(state, id) {
+      state.notes.forEach((note) => {if(note.id === id) note.flag = !note.flag})
+    }
   },
   actions: {},
   modules: {},

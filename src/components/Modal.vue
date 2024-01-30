@@ -1,17 +1,35 @@
 <template>
   <section class="modal">
     <div class="modal__wrapper">
-      <div class="modal-container">
+      <form class="modal-container" onsubmit="return false;" v-on:keyup.enter="checkText(text)">
         <h2 class="modal-container__head">НОВАЯ ЗАДАЧА</h2>
-        <input type="text" placeholder="введите задачу..." class="input modal-container__input" />
+        <input type="text" placeholder="введите задачу..." v-model="text" class="input modal-container__input"/>
         <div class="modal-btn">
           <button class="modal-btn__close" @click="$emit('close')">Закрыть</button>
-          <button class="modal-btn__apply" @click="$emit('apply')">Принять</button>
+          <button class="modal-btn__apply" @click="checkText(text)"
+          >Принять</button>
         </div>
-      </div>
+      </form>
     </div>
   </section>
 </template>
 <script>
-export default {};
+import { mapMutations } from 'vuex';
+export default {
+  data() {
+    return {
+      text:'',
+    }
+  },
+  methods: {
+    ...mapMutations(['addNote']),
+
+    checkText(text) {
+      if(text !== ''){
+        this.addNote(text)
+        this.text = '';
+      }
+    }
+  }
+};
 </script>

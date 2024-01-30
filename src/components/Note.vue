@@ -1,7 +1,7 @@
 <template>
   <article class="note-article">
-    <div class="checkbox-note">
-      <checkbox><slot></slot></checkbox>
+    <div class="checkbox-note" >
+      <checkbox :flag="flag" :id="id"><slot></slot></checkbox>
     </div>
     <div class="edit-delete-note">
       <button class="edit-delete-note__btn">
@@ -21,7 +21,7 @@
           />
         </svg>
       </button>
-      <button class="edit-delete-note__btn">
+      <button class="edit-delete-note__btn" @click="deleteNote(id)">
         <svg
           class="delete-note"
           xmlns="http://www.w3.org/2000/svg"
@@ -51,11 +51,19 @@
   </article>
 </template>
 <script>
+import { mapMutations } from 'vuex';
 import Checkbox from "./Checkbox.vue";
 
 export default {
   components: { Checkbox },
   name: "Note",
+  props: {
+    id: String,
+    flag:Boolean
+  },
+  methods: {
+    ...mapMutations(['deleteNote'])
+  }
 };
 </script>
 <style lang=""></style>

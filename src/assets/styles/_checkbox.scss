@@ -34,17 +34,17 @@
     }
 }
 
-#note-checkbox-id:checked ~ .note-checkbox__label span {
+.checkbox-input:checked ~ .note-checkbox__label span {
     background-color: $colorMainPurple;
     animation: box-checked 0.3s ease-in-out;
 }
 
-#note-checkbox-id:checked ~ .note-checkbox__label {
+.checkbox-input:checked ~ .note-checkbox__label {
     color: rgba(37, 37, 37, 0.5);
     text-decoration: line-through;
 }
 
-#note-checkbox-id:checked ~ .note-checkbox__label span span {
+.checkbox-input:checked ~ .note-checkbox__label span span {
     opacity: 1;
     animation: checked-check 0.3s ease-in-out;
 }

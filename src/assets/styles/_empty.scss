@@ -1,0 +1,21 @@
+@import "variables.scss";
+
+.empty-container {
+    padding-top: 13px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.empty-img {
+    object-fit: contain;
+    max-height: 174px;
+}
+
+.empty-text {
+    text-align: center;
+    font-size: $fsTodoText;
+    font-style: normal;
+    font-weight: 400;
+}

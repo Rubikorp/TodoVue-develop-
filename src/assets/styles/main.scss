@@ -6,6 +6,7 @@
 @import "checkbox.scss";
 @import "note-style.scss";
 @import "find-note.scss";
+@import "empty.scss";
 
 * {
     box-sizing: border-box;
@@ -95,3 +96,15 @@ button {
     }
 }
 
+.slide-fade-enter-active {
+    transition: all .3s ease-out;
+  }
+  
+  .slide-fade-leave-active {
+    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    opacity: 0;
+  }

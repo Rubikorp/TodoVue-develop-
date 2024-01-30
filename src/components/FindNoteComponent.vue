@@ -68,10 +68,9 @@
   </div>
 </template>
 <script>
+import { mapMutations } from 'vuex';
 export default {
   name: "FindNoteComponent",
-  props: {
-  },
   data() {
     return {
       select_option: [
@@ -84,10 +83,12 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['editFilter']),
     clickOption(name) {
       this.select_option.forEach((element) => {
         if (element.name === name) {
           this.current_select = element;
+          this.editFilter(element.name);
         }
       });
     },
