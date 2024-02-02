@@ -23,7 +23,12 @@
       </div>
     </section>
     <transition name="slide-fade">
-      <modal v-if="show_modal" @close="show_modal = false"></modal>
+      <modal 
+        v-if="show_modal" @close="show_modal = false">
+      </modal>
+      <!-- <modal 
+        v-if="show_modal_edit" @close="show_modal_edit = false">
+      </modal> -->
     </transition>
   </div>
 </template>
@@ -47,10 +52,10 @@ export default {
   data() {
     return {
       show_modal: false,
+      show_modal_edit: false,
     };
   },
   methods: {
-
   },
   computed: {
     ...mapGetters(["getAllNotes", "getLength", "getComplNote", "getUnComplNote", "getFilterValue"]),
