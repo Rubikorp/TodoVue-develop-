@@ -1,6 +1,6 @@
 export const getNoteFlag = (state, flag_value) => {
   try {
-    return state.filter((item) => item.flag === value_flag);
+    return state.filter((item) => item.flag === flag_value);
   } catch (err) {
     console.log(`getNoteFlag /n ${err}`);
   }

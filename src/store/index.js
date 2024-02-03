@@ -6,6 +6,9 @@ import {getNoteFlag, findNoteId} from "@/assets/scripts/clearFunction";
 export default createStore({
   state: {
     filter: 'all',
+    current_note: '',
+    searchQuery: '',
+    // -----------
     notes: [
       {
         id: uuidv4(),
@@ -32,6 +35,19 @@ export default createStore({
     },
     getNote(state,id) {
       return findNoteId(state, id);
+    },
+    getCurrentNote(state) {
+      return state.current_note
+    },
+    filteredData: state => {
+      // Функция, которая фильтрует данные в соответствии с поисковым запросом
+      return state.notes.filter(item => {
+        // Применяем посимвольный поиск к каждому элементу массива данных
+        const searchData = item.text.toLowerCase();
+        const query = state.searchQuery.toLowerCase();
+        // Возвращаем элементы, которые содержат поисковый запрос внутри себя
+        return searchData.includes(query);
+      });
     }
   },
   mutations: {
@@ -45,10 +61,23 @@ export default createStore({
       state.filter = filter
     },
     editFlag(state, id) {
-      state.notes.forEach((note) => {if(note.id === id) note.flag = !note.flag})
+      state.notes.forEach(note => {if(note.id === id) note.flag = !note.flag})
     },
-    editTextNote(state, id, text) {
-      findNoteId(state, id).text = text;
+    editTextNote(state, obj) {
+      state.notes.forEach(note => {if(note.id === obj.id) 
+        note.text = obj.text
+      })
+    },
+    updateCurrentNote(state, note) {
+      state.current_note = note
+    },
+    removeCurrentNote(state) {
+      state.current_note = '';
+    },
+    setSearchQuery: (state, query) => {
+      // Мутация для установки поискового запроса
+      state.searchQuery = query;
+      state.filter = 'search';
     }
   },
   actions: {},

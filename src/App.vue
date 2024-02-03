@@ -4,7 +4,7 @@
       <div class="ankhor">
         <create-note-icon
           class="create-note-icon"
-          @click="show_modal = true"
+          @click="openModal"
         ></create-note-icon>
       </div>
       <h1 class="ttl">СПИСОК ЗАДАЧ</h1>
@@ -16,7 +16,9 @@
             :key="item.id" 
             :flag="item.flag"
             :id="item.id"
-            >{{item.text}}</note
+            :text="item.text"
+            @openEditNote="openEditNote"
+            ></note
           >
           <empty-component v-if="getLength === 0"></empty-component>
         </div>
@@ -24,17 +26,18 @@
     </section>
     <transition name="slide-fade">
       <modal 
-        v-if="show_modal" @close="show_modal = false">
+        v-if="show_modal" @close="show_modal = false"
+        :show_modal="show_modal"
+        :show_modal_edit="show_modal_edit"
+        :id_cur="getCurrentNote.id"
+        :text_prev="getCurrentNote.text">
       </modal>
-      <!-- <modal 
-        v-if="show_modal_edit" @close="show_modal_edit = false">
-      </modal> -->
     </transition>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters} from "vuex";
 import FindNoteComponent from "./components/FindNoteComponent.vue";
 import CreateNoteIcon from "./components/CreateNoteIcon.vue";
 import Modal from "./components/Modal.vue";
@@ -53,18 +56,28 @@ export default {
     return {
       show_modal: false,
       show_modal_edit: false,
+      show_empty: false
     };
   },
   methods: {
+    openEditNote() {
+      this.show_modal = true;
+      this.show_modal_edit = true;
+    },
+    openModal() {
+      this.show_modal = true;
+      this.show_modal_edit = false;
+    }
   },
   computed: {
-    ...mapGetters(["getAllNotes", "getLength", "getComplNote", "getUnComplNote", "getFilterValue"]),
+    ...mapGetters(["getAllNotes", "getLength", "getComplNote", "getUnComplNote", "getFilterValue","getCurrentNote", "filteredData"]),
     checkFilter() {
         const filter = this.getFilterValue;
         if(filter === "all") return this.getAllNotes;
         if(filter === "uncompl") return this.getUnComplNote;
         if(filter === "compl") return this.getComplNote;
-    }
+        if(filter === "search") return this.filteredData;
+    },
   },
 };
 </script>

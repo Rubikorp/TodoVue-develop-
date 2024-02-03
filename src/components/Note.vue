@@ -1,10 +1,10 @@
 <template>
   <article class="note-article">
     <div class="checkbox-note" >
-      <checkbox :flag="flag" :id="id"><slot></slot></checkbox>
+      <checkbox :flag="flag" :id="id">{{ text }}</checkbox>
     </div>
     <div class="edit-delete-note">
-      <button class="edit-delete-note__btn">
+      <button class="edit-delete-note__btn" @click="$emit('openEditNote'), updateCurrentNote({id:id, text:text, flag:flag})">
         <svg
           class="edit-note"
           xmlns="http://www.w3.org/2000/svg"
@@ -59,10 +59,11 @@ export default {
   name: "Note",
   props: {
     id: String,
-    flag:Boolean
+    flag:Boolean,
+    text: String
   },
   methods: {
-    ...mapMutations(['deleteNote'])
+    ...mapMutations(['deleteNote', 'updateCurrentNote'])
   }
 };
 </script>
