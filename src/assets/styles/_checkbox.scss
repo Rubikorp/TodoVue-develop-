@@ -44,6 +44,11 @@
     text-decoration: line-through;
 }
 
+.checkbox-input:checked ~ .font-black-scheme-checked {
+    color: rgba(100, 100, 100, 0.5);
+    text-decoration: line-through;
+}
+
 .checkbox-input:checked ~ .note-checkbox__label span span {
     opacity: 1;
     animation: checked-check 0.3s ease-in-out;

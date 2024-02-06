@@ -7,37 +7,38 @@
           @click="openModal"
         ></create-note-icon>
       </div>
-      <h1 class="ttl">СПИСОК ЗАДАЧ</h1>
+      <h1 :class="getBlackScheme ? 'ttl font-black-scheme' : 'ttl'">СПИСОК ЗАДАЧ</h1>
       <find-note-component></find-note-component>
       <div class="note">
         <div class="note__container">
-          <note 
-            v-for="item in checkFilter" 
-            :key="item.id" 
+          <note
+            v-for="item in checkFilter"
+            :key="item.id"
             :flag="item.flag"
             :id="item.id"
             :text="item.text"
             @openEditNote="openEditNote"
-            ></note
-          >
+          ></note>
           <empty-component v-if="getLength === 0"></empty-component>
         </div>
       </div>
     </section>
     <transition name="slide-fade">
-      <modal 
-        v-if="show_modal" @close="show_modal = false"
+      <modal
+        v-if="show_modal"
+        @close="show_modal = false"
         :show_modal="show_modal"
         :show_modal_edit="show_modal_edit"
         :id_cur="getCurrentNote.id"
-        :text_prev="getCurrentNote.text">
+        :text_prev="getCurrentNote.text"
+      >
       </modal>
     </transition>
   </div>
 </template>
 
 <script>
-import { mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import FindNoteComponent from "./components/FindNoteComponent.vue";
 import CreateNoteIcon from "./components/CreateNoteIcon.vue";
 import Modal from "./components/Modal.vue";
@@ -56,7 +57,7 @@ export default {
     return {
       show_modal: false,
       show_modal_edit: false,
-      show_empty: false
+      show_empty: false,
     };
   },
   methods: {
@@ -67,16 +68,25 @@ export default {
     openModal() {
       this.show_modal = true;
       this.show_modal_edit = false;
-    }
+    },
   },
   computed: {
-    ...mapGetters(["getAllNotes", "getLength", "getComplNote", "getUnComplNote", "getFilterValue","getCurrentNote", "filteredData"]),
+    ...mapGetters([
+      "getAllNotes",
+      "getLength",
+      "getComplNote",
+      "getUnComplNote",
+      "getFilterValue",
+      "getCurrentNote",
+      "filteredData",
+      "getBlackScheme",
+    ]),
     checkFilter() {
-        const filter = this.getFilterValue;
-        if(filter === "all") return this.getAllNotes;
-        if(filter === "uncompl") return this.getUnComplNote;
-        if(filter === "compl") return this.getComplNote;
-        if(filter === "search") return this.filteredData;
+      const filter = this.getFilterValue;
+      if (filter === "all") return this.getAllNotes;
+      if (filter === "uncompl") return this.getUnComplNote;
+      if (filter === "compl") return this.getComplNote;
+      if (filter === "search") return this.filteredData;
     },
   },
 };

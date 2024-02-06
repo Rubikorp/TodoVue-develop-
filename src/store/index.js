@@ -8,6 +8,7 @@ export default createStore({
     filter: 'all',
     current_note: '',
     searchQuery: '',
+    black_scheme: false,
     // -----------
     notes: [
       {
@@ -48,6 +49,9 @@ export default createStore({
         // Возвращаем элементы, которые содержат поисковый запрос внутри себя
         return searchData.includes(query);
       });
+    },
+    getBlackScheme(state) {
+      return state.black_scheme;
     }
   },
   mutations: {
@@ -78,6 +82,9 @@ export default createStore({
       // Мутация для установки поискового запроса
       state.searchQuery = query;
       state.filter = 'search';
+    },
+    toogleBlackScheme(state) {
+      state.black_scheme = !state.black_scheme;
     }
   },
   actions: {},

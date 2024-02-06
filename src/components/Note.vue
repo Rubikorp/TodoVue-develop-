@@ -51,7 +51,7 @@
   </article>
 </template>
 <script>
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import Checkbox from "./Checkbox.vue";
 
 export default {
@@ -64,6 +64,9 @@ export default {
   },
   methods: {
     ...mapMutations(['deleteNote', 'updateCurrentNote'])
+  },
+  computed: {
+    ...mapGetters(['getBlackScheme']),
   }
 };
 </script>

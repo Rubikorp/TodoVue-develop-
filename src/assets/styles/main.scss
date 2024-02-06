@@ -1,4 +1,3 @@
-@import "./normalize.css";
 @import "variables.scss";
 @import "style-fragment.scss";
 @import "animation.scss";
@@ -108,3 +107,33 @@ button {
   .slide-fade-leave-to {
     opacity: 0;
   }
+
+
+// Black scheme
+$colorBlackSheme:  #252525;
+
+.bg-black-scheme {
+    background-color: $colorBlackSheme;
+}
+
+.font-black-scheme {
+    color: $colorWhite;
+}
+
+.font-black-scheme-checked {
+    color: $colorWhite;
+}
+
+.input-black-scheme {
+    background-color: $colorBlackSheme;
+    color: $colorWhite;
+    border-color: $colorWhite;
+    &::placeholder {
+        color: #666;
+    }
+}
+
+.modal-black-scheme {
+    border-color: $colorWhite;
+    background-color: $colorBlackSheme;
+}
