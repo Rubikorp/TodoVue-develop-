@@ -7,7 +7,9 @@
           @click="openModal"
         ></create-note-icon>
       </div>
-      <h1 :class="getBlackScheme ? 'ttl font-black-scheme' : 'ttl'">СПИСОК ЗАДАЧ</h1>
+      <h1 :class="getBlackScheme ? 'ttl font-black-scheme' : 'ttl'">
+        СПИСОК ЗАДАЧ
+      </h1>
       <find-note-component></find-note-component>
       <div class="note">
         <div class="note__container">
@@ -38,7 +40,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import FindNoteComponent from "./components/FindNoteComponent.vue";
 import CreateNoteIcon from "./components/CreateNoteIcon.vue";
 import Modal from "./components/Modal.vue";
@@ -61,6 +63,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["updateNoteList"]),
     openEditNote() {
       this.show_modal = true;
       this.show_modal_edit = true;
@@ -89,6 +92,16 @@ export default {
       if (filter === "search") return this.filteredData;
     },
   },
+  beforeMount: function () {
+    const data = localStorage.getItem("data");
+    if (data) {
+      this.updateNoteList(JSON.parse(data));
+    }
+  },
+  updated: function(){
+      const data = JSON.stringify(this.getAllNotes);
+      localStorage.setItem("data", data);
+    },
 };
 </script>
 

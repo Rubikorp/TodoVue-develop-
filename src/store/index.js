@@ -72,6 +72,9 @@ export default createStore({
         note.text = obj.text
       })
     },
+    updateNoteList(state, note_list) {
+      state.notes = note_list
+    },
     updateCurrentNote(state, note) {
       state.current_note = note
     },
