@@ -7,10 +7,12 @@
           @click="openModal"
         ></create-note-icon>
       </div>
-      <h1 :class="getBlackScheme ? 'ttl font-black-scheme' : 'ttl'">
-        СПИСОК ЗАДАЧ
-      </h1>
-      <find-note-component></find-note-component>
+      <header>
+        <h1 :class="getBlackScheme ? 'ttl font-black-scheme' : 'ttl'">
+          СПИСОК ЗАДАЧ
+        </h1>
+        <find-note-component></find-note-component>
+      </header>
       <div class="note">
         <div class="note__container">
           <note
@@ -98,10 +100,10 @@ export default {
       this.updateNoteList(JSON.parse(data));
     }
   },
-  updated: function(){
-      const data = JSON.stringify(this.getAllNotes);
-      localStorage.setItem("data", data);
-    },
+  updated: function () {
+    const data = JSON.stringify(this.getAllNotes);
+    localStorage.setItem("data", data);
+  },
 };
 </script>
 

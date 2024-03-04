@@ -41,12 +41,9 @@ export default createStore({
       return state.current_note
     },
     filteredData: state => {
-      // Функция, которая фильтрует данные в соответствии с поисковым запросом
       return state.notes.filter(item => {
-        // Применяем посимвольный поиск к каждому элементу массива данных
         const searchData = item.text.toLowerCase();
         const query = state.searchQuery.toLowerCase();
-        // Возвращаем элементы, которые содержат поисковый запрос внутри себя
         return searchData.includes(query);
       });
     },

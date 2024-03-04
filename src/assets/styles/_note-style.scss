@@ -19,6 +19,8 @@
 .edit-delete-note {
     display: flex;
     align-items: center;
+    opacity: 0;
+    @include animation(opacity);
     &__btn {
         display: flex;
         justify-content: center;
@@ -28,6 +30,10 @@
     &__btn:hover {
         background-color: transparent;
     }
+}
+
+.note-article:hover > .edit-delete-note {
+    opacity: 1;
 }
 
 

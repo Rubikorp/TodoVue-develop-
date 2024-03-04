@@ -2,27 +2,19 @@
   <section class="modal">
     <div class="modal__wrapper">
       <form
+        v-if="checkModal()"
         :class="
           'modal-container ' +
           (getBlackScheme ? 'bg-black-scheme font-black-scheme' : '')
         "
         onsubmit="return false;"
-        v-on:keyup.enter="text !== '' ? pushText(text) : pushText(edit_text)"
+        v-on:keyup.enter="pushText(text)"
       >
         <h2 class="modal-container__head" v-if="checkModal()">НОВАЯ ЗАДАЧА</h2>
-        <h2 class="modal-container__head" v-if="checkModalEdit()">ИЗМЕНИТЬ</h2>
         <input
-          v-if="checkModal()"
           type="text"
           placeholder="введите задачу..."
           v-model="text"
-          :class="'input modal-container__input ' + (getBlackScheme ? 'input-black-scheme' : '')"
-        />
-        <input
-          v-if="checkModalEdit()"
-          type="text"
-          placeholder="введите задачу..."
-          v-model="edit_text"
           :class="'input modal-container__input ' + (getBlackScheme ? 'input-black-scheme' : '')"
         />
         <div class="modal-btn">
@@ -36,8 +28,29 @@
           >
             Принять
           </button>
+        </div>
+      </form>
+      <form
+        v-if="checkModalEdit()"
+        :class="
+          'modal-container ' +
+          (getBlackScheme ? 'bg-black-scheme font-black-scheme' : '')
+        "
+        onsubmit="return false;"
+        v-on:keyup.enter="pushText(edit_text)"
+      >
+        <h2 class="modal-container__head">ИЗМЕНИТЬ</h2>
+        <input
+          type="text"
+          placeholder="введите задачу..."
+          v-model="edit_text"
+          :class="'input modal-container__input ' + (getBlackScheme ? 'input-black-scheme' : '')"
+        />
+        <div class="modal-btn">
+          <button :class="'modal-btn__close ' + (getBlackScheme ? 'bg-black-scheme' : '')" @click="$emit('close')">
+            Закрыть
+          </button>
           <button
-            v-if="checkModalEdit()"
             class="modal-btn__apply"
             @click="pushText(edit_text)"
           >
@@ -77,6 +90,7 @@ export default {
       if (this.checkModal && this.text !== "") {
         this.addNote(text);
         this.text = "";
+        this.$emit("close");
       } else if (this.checkModalEdit && this.edit_text !== "") {
         const textValueId = { id: this.id_cur, text: text };
         this.editTextNote(textValueId);
